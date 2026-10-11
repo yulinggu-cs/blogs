@@ -70,7 +70,7 @@ We find that:
 *Figure: <!--Percentage of problems with at least 1 (out of 16) correct attempts across AIME and HMMT validation splits comparing unstrategized temperature-based sampling basline, standard LLM strategizing, and our DiSO-optimized strategizing.--> **Standard LLM strategizing does even worse than the unstrategized temperature-based baseline, while meta-optimizing the strategizing principles for performance maximization leads to significant gains.** On AIME and HMMT tasks, we find that Standard LLM Strategizing could lead to regressions compared to the baseline. Our approach, DiSO (Diversity-driven Strategic Optimization), instead meta-optimizes the strategizing principles on a small training set of questions, resulting in strategies that actually lead to performance gains.*
 
 
-<details>
+<details markdown="1">
 <summary><b>🔍 View Example: Standard LLM Strategizing Prompt</b></summary>
 
 ```markdown
@@ -100,6 +100,7 @@ Output all {k} allocated tries strictly within the following XML format:
 </strategies>
 """
 ```
+
 </details>
 
 
@@ -144,7 +145,7 @@ The initial strategizing prompt, before learning how to explore, already contain
 Inspecting the optimized prompt suggests that DiSO learns a far more detailed and nuanced notion of exploration. Over the iterations, the optimizer systematically refines the initial strategizing principles: allocating attempts across fundamentally distinct mathematical frameworks with concrete examples of what 'distinct' entails (e.g., synthetic vs. analytic geometry), while allowing bounded redundancy with varied execution mechanics rather than mere duplicates. The learned principles also expand, for instance, to ground strategies in standard competition-math toolkits (e.g., small-case extrapolation, Burnside's Lemma) and LLM-friendly heuristics (e.g., 'elegant, low-algebra approaches' for AIME and 'avoid massive DP or Transfer Matrices' for HMMT). DiSO reshapes not only *what* the principles are, but *how* they are phrased and *where* they are placed across the prompt bundle—elevating high-level principles into the system prompt and dedicating the user prompt to an explicit pre-execution problem analysis. Because the meta-prompt is length-bounded, the optimized prompt settles into a compact, stable set of around five core principles that sharpen strategized exploration and drive performance breakthroughs on held-out benchmarks rather than endlessly accumulating prompt requirements.
 
 
-<details>
+<details markdown="1">
 <summary><b>🔍 View Example: DiSO-optimized Strategizing Prompt (for AIME)</b></summary>
 
 ```markdown
@@ -178,6 +179,7 @@ Then, output exactly {k} strategies in this XML format:
   </strategy>
 </strategies>"""
 ```
+
 </details>
 
 ## Main Experiments

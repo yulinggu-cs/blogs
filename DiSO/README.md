@@ -2,6 +2,7 @@
 layout: default
 title: Learning how to explore with DiSO
 description: Diversity-driven Strategic Optimization (DiSO) elicits Breakthroughs in LLMs.
+permalink: /DiSO/
 ---
 
 # Diversity-driven Strategic Optimization (DiSO) elicits Breakthroughs in LLMs

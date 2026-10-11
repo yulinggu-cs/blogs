@@ -231,6 +231,7 @@ The November tournament spans mid-AMC to upper-AIME difficulty, featuring challe
 - Just as on AIME, standard LLM strategizing proves highly fragile on HMMT, suffering a steep regression on HMMT 2026 (−15.2% below baseline). DiSO demonstrates robustness against such fragility across both benchmarks, showing how meta-optimizing exploration principles produces more task-adaptive and reliable performance gains.
 
 
+---
 
 ### BRUMO (Out-of-Distribution Transfer)
 

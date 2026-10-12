@@ -18,7 +18,7 @@ permalink: /DiSO/
 
 <p align="center"><img width="85%" src="diso_fig1.png" /></p>
 
-*Figure: **Overview of DiSO (Diversity-driven Strategic Optimization).** LLMs may not be natural explorers out of the box, but with DiSO, they can learn to explore—navigating complex output spaces across the frontier of challenging tasks. DiSO unlocks effective exploration via a simple inference-time loop: (1) an **LM Strategist** proposes K diverse strategies for a task; (2) an **LM Solver** executes the K rollouts in parallel; and (3) an **LM Optimizer** meta-optimizes the strategized exploration prompts based on execution feedback to systematically refine how the exploration is done. Over successive iterations, DiSO discovers generalizable principles for strategized exploration that drive performance gains over both unstrategized sampling and standard LLM strategizing.*
+*Figure: **Overview of DiSO (Diversity-driven Strategic Optimization).** LLMs may not be natural explorers out of the box, but with DiSO, they can learn to explore—navigating complex output spaces across the frontier of challenging tasks. DiSO unlocks effective exploration via a simple inference-time loop: (1) an **LM Strategist** proposes K diverse strategies for a task; (2) an **LM Solver** executes the K generations in parallel; and (3) an **LM Optimizer** meta-optimizes the strategized exploration prompts based on execution feedback to systematically refine how the exploration is done. Over successive iterations, DiSO discovers generalizable principles for strategized exploration that drive performance gains over both unstrategized sampling and standard LLM strategizing.*
 
 
 ## Overview
@@ -37,7 +37,7 @@ DiSO (pronounced *"dye-so"*) operates via an iterative 3-part loop:
 
 This procedure is iterated until the meta-optimization converges (the unoptimized vs. optimized prompt remain the same for an iteration) or a fixed number of iterations is reached. 
 
-We evaluate our method across five challenging math competition benchmarks from [MathArena](https://matharena.ai/): AIME 2025, AIME 2026, HMMT 2025, HMMT 2026, and BRUMO 2025. Empirically, DiSO consistently outperforms standard temperature-based sampling, demonstrating higher chances of discovering a correct solution using DiSO-optimized exploration.
+We evaluate our method across five math competition benchmarks from [MathArena](https://matharena.ai/): AIME 2025, AIME 2026, HMMT 2025, HMMT 2026, and BRUMO 2025. Empirically, DiSO consistently outperforms standard generations (temperature-based sampling), demonstrating a higher chance of discovering correct solutions using DiSO-optimized exploration.
 
 
 ## Background

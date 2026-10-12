@@ -204,7 +204,7 @@ In competition-level mathematics, our objective is to strategically allocate a f
 **Evaluation & Results.** As shown in the Pass@K trajectories on AIME 2025 and 2026, DiSO leads to performance breakthroughs unattained by unstrategized sampling (baseline) or standard LLM strategizing (initial strategist):
 - On **AIME 2025**, the DiSO champion reaches **80.0% Pass@16**, representing a **+10.0% absolute improvement** over the unstrategized sampling baseline (70.0%) and a **+13.3% improvement** over the initial strategist (66.7%).
 - On **AIME 2026**, DiSO scales to **86.7% Pass@16**, delivering a decisive **+13.4% margin** over the baseline (73.3%) and outperforming the initial strategist (80.0%).
-- While the initial strategist (standard LLM strategizing) is unpredictable—surpassing the baseline on AIME 2026 (+6.7%) but falling behind it on AIME 2025 (−3.3%)—DiSO eliminates this fragility, consistently establishing large margins over both at Pass@16.
+- While the initial strategist (standard LLM strategizing) is unpredictable—surpassing the baseline on AIME 2026 (+6.7%) but falling behind it on AIME 2025 (−3.3%)—DiSO eliminates this fragility, consistently establishing performance gains over both at Pass@16.
 - For AIME, DiSO also accelerates search efficiency across early and intermediate budgets: for instance, on AIME 2025, the DiSO champion at K=8 already achieves 70.7% Pass@K, matching the terminal performance that unstrategized temperature sampling only reaches at K=16.
 
 ---

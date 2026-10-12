@@ -7,6 +7,14 @@ permalink: /DiSO/
 
 # Diversity-driven Strategic Optimization (DiSO) for Unlocking Effective Exploration in LLMs
 
+<p style="font-size: 1.05em; margin-top: 14px; margin-bottom: 24px; line-height: 1.6;">
+  <strong>Yuling Gu</strong><sup>1</sup>, 
+  <strong>Jason Weston</strong><sup>1,2</sup>, 
+  <strong>Kyunghyun Cho</strong><sup>1</sup><br>
+  <span style="color: #59636e; font-size: 0.9em;"><sup>1</sup>New York University, <sup>2</sup>Meta</span>
+</p>
+
+
 
 <p align="center"><img width="85%" src="diso_fig1.png" /></p>
 
@@ -261,9 +269,6 @@ We introduce **DiSO**, Diversity-driven Strategic Optimization, a simple framewo
 
 Looking forward, learning *how to explore* represents a promising and computationally efficient paradigm for test-time scaling. LLMs may not be natural explorers out of the box, but with DiSO, they can learn to explore—navigating complex output spaces across the frontier of challenging tasks. More broadly, if AI systems can become better explorers of complex problem spaces, they can help humanity unlock discoveries across some of the hardest frontiers in science, mathematics, and beyond.
 
-
-## Contributors
-Yuling Gu, Jason Weston, Kyunghyun Cho
 
 ## More details
 We plan to put a full paper on arXiv soon.

@@ -1,28 +1,24 @@
 ---
 layout: default
 title: Learning how to explore with DiSO
-description: Diversity-driven Strategic Optimization (DiSO) elicits Breakthroughs in LLMs.
+description: Diversity-driven Strategic Optimization (DiSO) for Unlocking Effective Exploration in LLMs.
 permalink: /DiSO/
 ---
 
-# Diversity-driven Strategic Optimization (DiSO) elicits Breakthroughs in LLMs
+# Diversity-driven Strategic Optimization (DiSO) for Unlocking Effective Exploration in LLMs
 
-<!-- Other possibilities:
-Strategized Strategizing: You can when you strategize! 
-Diversity-driven Semantic Optimization
-Diversity-driven Strategic Optimization (DiSO) for Unlocking LLMs' Potential -->
 
-<p align="center"><img width="80%" src="diso_fig1.png" /></p>
+<p align="center"><img width="85%" src="diso_fig1.png" /></p>
 
-*Figure: **Overview of DiSO (Diversity-driven Strategic Optimization).** LLMs may not be natural explorers out of the box, but with DiSO, they can learn to explore—unlocking breakthroughs across the frontier of challenging tasks. DiSO unlocks effective exploration via a simple inference-time loop: (1) an **LM Strategist** proposes K diverse strategies for a task; (2) an **LM Solver** executes the K rollouts in parallel; and (3) an **LM Optimizer** meta-optimizes the strategized exploration prompts based on execution feedback to systematically refine how the exploration is done. Over successive iterations, DiSO discovers generalizable principles for strategized exploration that drive gains over both unstrategized sampling and standard LLM strategizing.*
+*Figure: **Overview of DiSO (Diversity-driven Strategic Optimization).** LLMs may not be natural explorers out of the box, but with DiSO, they can learn to explore—navigating complex output spaces across the frontier of challenging tasks. DiSO unlocks effective exploration via a simple inference-time loop: (1) an **LM Strategist** proposes K diverse strategies for a task; (2) an **LM Solver** executes the K rollouts in parallel; and (3) an **LM Optimizer** meta-optimizes the strategized exploration prompts based on execution feedback to systematically refine how the exploration is done. Over successive iterations, DiSO discovers generalizable principles for strategized exploration that drive performance gains over both unstrategized sampling and standard LLM strategizing.*
 
 
 ## Overview
 
 
-AI systems have achieved remarkable success on a range of tasks through [advances in post-training](https://arxiv.org/abs/2411.15124), but currently accuracy, format, style and helpfulness are often prioritized over output diversity. This creates a problem: sharpened probability distributions inducing homogenized generations and restricting the range of ideas in creative or exploratory domains. In this work, we present **DiSO** (**Di**versity-driven **S**trategic **O**ptimization), a simple framework that unlocks diverse trajectories at inference time to achieve breakthroughs in challenging, exploratory tasks. 
+AI systems have achieved remarkable success on a range of tasks through [advances in post-training](https://arxiv.org/abs/2411.15124), but currently accuracy, format, style and helpfulness are often prioritized over output diversity. This creates a problem: sharpened probability distributions inducing homogenized generations and restricting the range of ideas in creative or exploratory domains. In this work, we present **DiSO** (**Di**versity-driven **S**trategic **O**ptimization), a simple framework that unlocks diverse trajectories at inference time to achieve effective exploration in challenging problem spaces. 
 
-**🚀 TLDR: *LLMs are bad explorers! But we can make them learn to explore -- with DiSO! :)***
+**🚀 TLDR: *LLMs are bad explorers! But we can make them learn to explore—with DiSO! :)***
 
 
 DiSO (pronounced *"dye-so"*) operates via an iterative 3-part loop:
@@ -38,13 +34,13 @@ We evaluate our method across five challenging math competition benchmarks from 
 
 ## Background
 
-Post-training of large language models often prioritizes accuracy, helpfulness, and style over diversity. These methods tend to sharpen the output distribution and result in models that produce outputs clustering around a narrow set of predictable patterns--nothing in their training incentivizes exploring the alternatives.
+Post-training of large language models often prioritizes accuracy, helpfulness, and style over diversity. These methods tend to sharpen the output distribution and result in models that produce outputs clustering around a narrow set of predictable patterns—nothing in their training incentivizes exploring the alternatives.
 
 
 This creates a fundamental bottleneck whenever discovering the optimal outcome requires wider exploration of the solution space. Diversity of thought is precisely what unlocks breakthrough progress in exploratory domains—such as tackling competition-level mathematical problems, uncovering novel scientific hypotheses, formal theorem proving, creative writing, and synthesizing alternative trajectories in multi-step agentic systems. When search is confined to a single sharpened probability basin, models fail to find non-obvious breakthrough solutions or easily get stuck in repetitive failure modes.
 
 
-Existing efforts to restore diversity have focused either on training-based algorithms or prompting the model to generate different responses. On one side, RL-based methods that jointly optimize diversity and quality (e.g., [DivPO](https://arxiv.org/pdf/2501.18101), [DARLING](https://arxiv.org/pdf/2509.02534)) have shown significant improvement compared to DPO, GRPO. On the other side, inference-time approaches (e.g., [Verbalized Sampling](https://arxiv.org/pdf/2510.01171), [GuidedSampling](https://arxiv.org/pdf/2510.03777v1)) suggest that existing models already possess latent capabilities to explore diverse output spaces without alternative training methods. Yet, these inference-time strategies face an inherent ceiling: they are only as effective as the prompts that guide them. Static, hand-engineered or single-shot LLM-written scaffolds that only encourage rollouts to be **different** fail to adapt to complex exploration techniques required for **succeeding** at different tasks and domains, leaving a critical gap for an inference-time mechanism that **strategizes the exploration** and further **systematically optimizes the strategizing** to better unlock breakthroughs.
+Existing efforts to restore diversity have focused either on training-based algorithms or prompting the model to generate different responses. On one side, RL-based methods that jointly optimize diversity and quality (e.g., [DivPO](https://arxiv.org/abs/2501.18101), [DARLING](https://arxiv.org/abs/2509.02534)) have shown significant improvement compared to DPO, GRPO. On the other side, inference-time approaches (e.g., [Verbalized Sampling](https://arxiv.org/abs/2510.01171), [GuidedSampling](https://arxiv.org/abs/2510.03777v1)) suggest that existing models already possess latent capabilities to explore diverse output spaces without alternative training methods. Yet, these inference-time strategies face an inherent ceiling: they are only as effective as the prompts that guide them. Static, hand-engineered or single-shot LLM-written scaffolds that only encourage rollouts to be **different** fail to adapt to complex exploration techniques required for **succeeding** at different tasks and domains, leaving a critical gap for an inference-time mechanism that **strategizes the exploration** and further **systematically optimizes the strategizing** to better unlock breakthroughs.
 
 
 
@@ -142,7 +138,7 @@ After the iterations are completed, we evaluate Pass@16 on the held-out validati
 ### Analysis of learned strategic exploration principles
 The initial strategizing prompt, before learning how to explore, already contained principles intended to guide exploration—such as encouraging fundamentally distinct mathematical angles and allowing selective redundancy for error-prone approaches. While seemingly reasonable, we observe that these had the unfortunate effect of forcing the solver into brutal approaches that LLMs struggle with (e.g., Barycentric Coordinates, Projective Geometry, Brute-Force Python Simulation), as well as wasting attempts on duplicate failure paths (e.g., clone strategies explicitly titled "(Redundant)") rather than encouraging genuine exploration, ultimately leading to degraded performance.
 
-Inspecting the optimized prompt suggests that DiSO learns a far more detailed and nuanced notion of exploration. Over the iterations, the optimizer systematically refines the initial strategizing principles: allocating attempts across fundamentally distinct mathematical frameworks with concrete examples of what 'distinct' entails (e.g., synthetic vs. analytic geometry), while allowing bounded redundancy with varied execution mechanics rather than mere duplicates. The learned principles also expand, for instance, to ground strategies in standard competition-math toolkits (e.g., small-case extrapolation, Burnside's Lemma) and LLM-friendly heuristics (e.g., 'elegant, low-algebra approaches' for AIME and 'avoid massive DP or Transfer Matrices' for HMMT). DiSO reshapes not only *what* the principles are, but *how* they are phrased and *where* they are placed across the prompt bundle—elevating high-level principles into the system prompt and dedicating the user prompt to an explicit pre-execution problem analysis. Because the meta-prompt is length-bounded, the optimized prompt settles into a compact, stable set of around five core principles that sharpen strategized exploration and drive performance breakthroughs on held-out benchmarks rather than endlessly accumulating prompt requirements.
+Inspecting the optimized prompt suggests that DiSO learns a far more detailed and nuanced notion of exploration. Over the iterations, the optimizer systematically refines the initial strategizing principles: allocating attempts across fundamentally distinct mathematical frameworks with concrete examples of what 'distinct' entails (e.g., synthetic vs. analytic geometry), while allowing bounded redundancy with varied execution mechanics rather than mere duplicates. The learned principles also expand, for instance, to ground strategies in standard competition-math toolkits (e.g., small-case extrapolation, Burnside's Lemma) and LLM-friendly heuristics (e.g., 'elegant, low-algebra approaches' for AIME and 'avoid massive DP or Transfer Matrices' for HMMT). DiSO reshapes not only *what* the principles are, but *how* they are phrased and *where* they are placed across the prompt bundle—elevating high-level principles into the system prompt and dedicating the user prompt to an explicit pre-execution problem analysis. Because the meta-prompt is length-bounded, the optimized prompt settles into a compact, stable set of around five core principles that sharpen strategized exploration and drive performance gains on held-out benchmarks rather than endlessly accumulating prompt requirements.
 
 
 <details markdown="1">
@@ -191,7 +187,7 @@ We compare inference-time exploration from:
 2. **Initial Strategist**: The initial LLM-generated strategizing prompt bundle prior to meta-optimization.
 3. **DiSO Champion Strategist**: The prompt bundle meta-optimized by DiSO.
 
-In competition-level mathematics, our objective is to strategically allocate a finite budget of K tries to explore distinct mathematical paradigms and execution paths. By ensuring good strategic exploration, we maximize the probability that at least one attempt arrives at the exact correct answer. We therefore evaluate exploration using Pass@K, tracking performance across rollout budgets $k = 1 \dots 16$ to assess how rapidly each method uncovers correct solutions under varying compute budgets. In particular, we focus our analysis on Pass@16 results as Pass@16 was the target of our meta-optimization and champion selection.
+In competition-level mathematics, our objective is to strategically allocate a finite budget of K tries to explore distinct mathematical paradigms and execution paths. By ensuring good strategic exploration, we maximize the probability that at least one attempt arrives at the exact correct answer. We therefore evaluate exploration using Pass@K, tracking performance across rollout budgets $K = 1, \dots, 16$ to assess how rapidly each method uncovers correct solutions under varying compute budgets. In particular, we focus our analysis on Pass@16 results as Pass@16 was the target of our meta-optimization and champion selection.
 
 ### AIME
 
@@ -216,7 +212,7 @@ In competition-level mathematics, our objective is to strategically allocate a f
 ### HMMT
 
 **Task Overview.** The Harvard-MIT Mathematics Tournament is one of the largest and most prestigious collegiate-run high school competitions.
-The November tournament spans mid-AMC to upper-AIME difficulty, featuring challenging and non-standard problems from all areas of high school mathematics. The February tournament targets mid-AIME to Olympiad-level problems, requiring deeper, and more specialized mastery, spanning number theory, algebra, combinatorics, and geometry. Furthermore, unlike AIME's strict integer answer format (000–999), HMMT answers can be arbitrary mathematical expressions—including fractions, radicals, or coordinate tuples—demanding precise symbolic derivations. We use DiSO to learn strategies for exploration using past HMMT February problems from 2023 to 2025, yielding our DiSO Champion Strategist. We then evaluate performance across two held-out test suites: HMMT November 2025 and the HMMT February 2026.
+The November tournament spans mid-AMC to upper-AIME difficulty, featuring challenging and non-standard problems from all areas of high school mathematics. The February tournament targets mid-AIME to Olympiad-level problems, requiring deeper, and more specialized mastery, spanning number theory, algebra, combinatorics, and geometry. Furthermore, unlike AIME's strict integer answer format (000–999), HMMT answers can be arbitrary mathematical expressions—including fractions, radicals, or coordinate tuples—demanding precise symbolic derivations. We use DiSO to learn strategies for exploration using past HMMT February problems from 2023 to 2025, yielding our DiSO Champion Strategist. We then evaluate performance across two held-out test suites: HMMT November 2025 and HMMT February 2026.
 
 <p align="center">
   <img width="49%" src="hmmt_test_2025_pass_at_k_comparison_sas.png" />
@@ -226,7 +222,7 @@ The November tournament spans mid-AMC to upper-AIME difficulty, featuring challe
 *Figure: **Combinatorial Pass@K on held-out HMMT evaluation.** Left: HMMT November 2025, where DiSO Champion reaches 76.7% Pass@16, outperforming both the unstrategized baseline and the initial strategist (both at 66.7%, **+10.0%**). Right: HMMT February 2026, where DiSO Champion achieves 72.7% Pass@16, maintaining a **+3.0%** lead over the baseline (69.7%) and substantially outperforming the initial strategist (54.5%, **+18.2%**).*
 
 **Evaluation & Results.**
-- On **HMMT 2025**, the DiSO champion achieves **76.7% Pass@16**, a breakthrough performance gain compared to both the unstrategized temperature-based baseline (66.7%, a **+10.0% gain**) and the initial strategist (66.7%, **+10.0% gain**). Throughout the rollout budget $K \in \{6, \dots, 16\}$, DiSO maintains an unbroken performance advantage.
+- On **HMMT 2025**, the DiSO champion achieves **76.7% Pass@16**, a breakthrough performance gain compared to both the unstrategized temperature-based baseline (66.7%, a **+10.0% gain**) and the initial strategist (66.7%, **+10.0% gain**). Throughout the rollout budget $K \in \\{6, \dots, 16\\}$, DiSO maintains an unbroken performance advantage.
 - On **HMMT 2026**, DiSO achieves **72.7% Pass@16**, outperforming the unstrategized baseline (69.7%, **+3.0% gain**) and substantially reversing the severe regression of the initial strategist from the baseline (**54.5%**, DiSO enables **+18.2% recovery**).
 - Just as on AIME, standard LLM strategizing proves highly fragile on HMMT, suffering a steep regression on HMMT 2026 (−15.2% below baseline). DiSO demonstrates robustness against such fragility across both benchmarks, showing how meta-optimizing exploration principles produces more task-adaptive and reliable performance gains.
 
@@ -244,26 +240,26 @@ The November tournament spans mid-AMC to upper-AIME difficulty, featuring challe
 
 **Evaluation & Results.**
 - **Strong zero-shot out-of-distribution transfer**: Meta-optimized exclusively on HMMT, the DiSO champion transfers directly to BRUMO 2025 with zero tuning—achieving **86.7% Pass@16** and delivering a **+6.7% gain** over both the unstrategized baseline and the initial strategist (both at 80.0%).
-- **Learning generalizable principles for strategic exploration**: Across rollout budgets from K=4 to K=16, the HMMT-evolved champion prompt consistently dominates both comparators on BRUMO in a completely zero-shot, out-of-distribution setting. Inspecting the champion bundle confirms that DiSO learns universal exploration doctrines—such as capping redundancy, varying execution pivots, and steering clear of brittle computational traps—rather than memorizing HMMT-specific patterns.
-- **Promise for diverse applications**: These results demonstrate that meta-optimized exploration principles generalize robustly across distinct competition distributions and opens exciting opportunities for applying DiSO across a diverse range of applications to achieve breakthroughs in challenging, exploratory tasks.
+- **Learning generalizable principles for strategic exploration**: Across rollout budgets from $K=4$ to $K=16$, the HMMT-evolved champion prompt consistently dominates both comparators on BRUMO in a completely zero-shot, out-of-distribution setting. Inspecting the champion bundle confirms that DiSO learns universal exploration doctrines—such as capping redundancy, varying execution pivots, and steering clear of brittle computational traps—rather than memorizing HMMT-specific patterns.
+- **Promise for diverse applications**: These results demonstrate that meta-optimized exploration principles generalize robustly across distinct competition distributions and open exciting opportunities for applying DiSO across a diverse range of applications to unlock effective exploration in challenging, exploratory tasks.
 
 ## Ablation and other experiments
-**Baseline-Aware Meta-Optimization.** Beyond optimizing the strategist for exploration purely on its own execution telemetry, we explored a *baseline-aware* variant where the optimizer also explicitly receives comparative performance signals concerning the temperature-based baseline alongside the evolving prompt bundle—that also includes Baseline Pass@16, differential margins (Strategist - Baseline  Pass@16), joint failures, and direct regression cases where temperature sampling baseline succeeded while the strategist failed. We observe that a setup that includes this additional comparative telemetry also yields somewhat consistent gains across held-out evaluation benchmarks (e.g., matching or exceeding the baseline across AIME, HMMT, and BRUMO OOD transfer). 
+**Baseline-Aware Meta-Optimization.** Beyond optimizing the strategist for exploration purely on its own execution telemetry, we explored a *baseline-aware* variant where the optimizer also explicitly receives comparative performance signals concerning the temperature-based baseline alongside the evolving prompt bundle—that also includes Baseline Pass@16, differential margins (Strategist - Baseline Pass@16), joint failures, and direct regression cases where temperature sampling baseline succeeded while the strategist failed. We observe that a setup that includes this additional comparative telemetry also yields somewhat consistent gains across held-out evaluation benchmarks (e.g., matching or exceeding the baseline across AIME, HMMT, and BRUMO OOD transfer). 
 
 <p align="center"><img width="60%" src="baseline_aware_version.png" /></p>
 
 
 *Table: Evaluation of the Baseline-Aware variant across benchmarks at K=16. While it consistently matches or beats the baseline (see **bolded metrics**)—and yields massive consensus gains like +15.2% Maj@16 on HMMT 2025, its Pass@16 gains do not have a clear advantage over the baseline-agnostic DiSO as reported in [Main Experiments](#main-experiments) section.*
 
-The baseline-aware variant always matches or beats the baseline on Pass@16. However, incorporating performance signals concerning the baseline during meta-optimization introduces practical and conceptual trade-offs: it incurs extra inference overhead by requiring parallel baseline rollouts throughout the optimization loop, and more importantly, risks imposing an artificial ceiling where the meta-optimizer fixates on merely edging out the baseline rather than discovering unconstrained, breakthrough exploration principles. From our experiments, we also do not observe any clear advantage of the baseline-aware setup over our baseline-agnostic DiSO. For simplicity, compute efficiency, and higher ceiling potential, we focus on baseline-agnostic DiSO, optimizing the strategist on exploration strictly on its own trajectory feedback to drive performance breakthroughs.
+The baseline-aware variant always matches or beats the baseline on Pass@16. However, incorporating performance signals concerning the baseline during meta-optimization introduces practical and conceptual trade-offs: it incurs extra inference overhead by requiring parallel baseline rollouts throughout the optimization loop, and more importantly, risks imposing an artificial ceiling where the meta-optimizer fixates on merely edging out the baseline rather than discovering unconstrained, breakthrough exploration principles. From our experiments, we also do not observe any clear advantage of the baseline-aware setup over our baseline-agnostic DiSO. For simplicity, compute efficiency, and higher ceiling potential, we focus on baseline-agnostic DiSO, optimizing the strategist on exploration strictly on its own trajectory feedback to drive performance gains.
 
 
 ## Conclusion
 Modern LLMs are inherently limited explorers: unguided stochastic sampling often collapses into correlated failure modes, while naive, single-shot LLM strategizing is too fragile to reliably guide search. In this work, we demonstrate that **effective strategic exploration can be systematically learned.**
 
-We introduce **DiSO**, Diversity-driven Strategic Optimization, a simple framework for *learning how to explore*. DiSO's goal is to unlock diverse inference-time trajectories to achieve breakthroughs in challenging, exploratory tasks. By meta-optimizing strategic exploration prompts entirely at inference time, DiSO learns a compact set of (human-inspectable) core principles that sharpen exploration and drive performance gains on held-out benchmarks. Across five challenging competition benchmarks (AIME 2025, AIME 2026, HMMT 2025, HMMT 2026, and BRUMO 2025), DiSO unlocks performance breakthroughs over both unstrategized sampling and standard LLM strategizing. Notably, the HMMT champion strategist transfers zero-shot to a completely unseen competition, BRUMO 2025, suggesting that DiSO discovers generalizable exploration principles rather than merely memorizing benchmark-specific artifacts.
+We introduce **DiSO**, Diversity-driven Strategic Optimization, a simple framework for *learning how to explore*. DiSO's goal is to unlock diverse inference-time trajectories to achieve effective exploration in challenging problem spaces. By meta-optimizing strategic exploration prompts entirely at inference time, DiSO learns a compact set of (human-inspectable) core principles that sharpen exploration and drive performance gains on held-out benchmarks. Across five challenging competition benchmarks (AIME 2025, AIME 2026, HMMT 2025, HMMT 2026, and BRUMO 2025), DiSO unlocks performance gains over both unstrategized sampling and standard LLM strategizing. Notably, the HMMT champion strategist transfers zero-shot to a completely unseen competition, BRUMO 2025, suggesting that DiSO discovers generalizable exploration principles rather than merely memorizing benchmark-specific artifacts.
 
-Looking forward, learning *how to explore* represents a promising and computationally efficient paradigm for test-time scaling. LLMs may not be natural explorers out of the box, but with DiSO, they can learn to explore—unlocking breakthroughs across the frontier of challenging tasks. More broadly, if AI systems can become better explorers of complex problem spaces, they can help humanity unlock discoveries across some of the hardest frontiers in science, mathematics, and beyond.
+Looking forward, learning *how to explore* represents a promising and computationally efficient paradigm for test-time scaling. LLMs may not be natural explorers out of the box, but with DiSO, they can learn to explore—navigating complex output spaces across the frontier of challenging tasks. More broadly, if AI systems can become better explorers of complex problem spaces, they can help humanity unlock discoveries across some of the hardest frontiers in science, mathematics, and beyond.
 
 
 ## Contributors
@@ -276,10 +272,10 @@ We plan to put a full paper on arXiv soon.
 You can cite this blog (before the full paper is released) here:
 ```
 @article{gu2026diso,
-  title   = "Diversity-driven Strategic Optimization (DiSO) elicits Breakthroughs in LLMs",
+  title   = "Diversity-driven Strategic Optimization (DiSO) for Unlocking Effective Exploration in LLMs",
   author  = {Gu, Yuling and Weston, Jason and Cho, Kyunghyun},
   year    = "2026",
   month   = "October",
-  url     = "TODO!"
+  url     = "https://yulinggu-cs.github.io/blogs/DiSO/"
 }
 ```

@@ -16,7 +16,7 @@ permalink: /scoop/
 
 
 
-<p align="center"><img width="85%" src="diso_fig1.png" /></p>
+<p align="center"><img width="85%" src="scoop_fig1.png" /></p>
 
 *Figure: **Overview of SCOOP (Strategy Coordination Optimization).** LLMs may not be natural explorers out of the box, but with SCOOP, they can learn to explore—navigating complex output spaces across the frontier of challenging tasks. SCOOP unlocks effective exploration via a simple inference-time loop: (1) an **LM Strategist** proposes K diverse strategies for a task; (2) an **LM Solver** executes the K generations in parallel; and (3) an **LM Optimizer** meta-optimizes the strategized exploration prompts based on execution feedback to systematically refine how the exploration is done. Over successive iterations, SCOOP discovers generalizable principles for strategized exploration that drive performance gains over both unstrategized sampling and standard LLM strategizing.*
 
@@ -37,7 +37,7 @@ SCOOP operates via an iterative 3-part loop:
 
 This procedure is iterated until the meta-optimization converges (the unoptimized vs. optimized prompt remain textually the same for an iteration) or a fixed number of iterations is reached. 
 
-We evaluate our method across five challenging math competition benchmarks from [MathArena](https://matharena.ai/): AIME 2025, AIME 2026, HMMT 2025, HMMT 2026, and BRUMO 2025. Empirically, SCOOP consistently outperforms standard temperature-based sampling, demonstrating higher chances of discovering a correct solution using SCOOP-optimized exploration.
+We evaluate our method across five math competition benchmarks from [MathArena](https://matharena.ai/): AIME 2025, AIME 2026, HMMT 2025, HMMT 2026, and BRUMO 2025. Empirically, SCOOP consistently outperforms standard generations (temperature-based sampling), demonstrating a higher chance of discovering correct solutions using SCOOP-optimized exploration.
 
 
 ## Background
@@ -69,7 +69,7 @@ We find that:
 **Standard LLM Strategizing does not always help.** We prompted Gemini 3.8 Flash to build a meta-prompt that, given a competition-level mathematics problem, generates K different ways or strategies for solving that problem. Using such LLM-generated prompt to formulate K diverse strategies for exploring the output space, despite its detailedness and best intentions, did not help and instead hurt the performance a little (-5.0% and -2.5% regression). Indeed, such prompt-based methods are only as good as the prompt gets.
 
 
-<p align="center"><img width="90%" src="validation_rollout_distribution_comparison.png" /></p>
+<p align="center"><img width="90%" src="validation_distribution_comparison.png" /></p>
 
 *Figure: <!--Percentage of problems with at least 1 (out of 16) correct attempts across AIME and HMMT validation splits comparing unstrategized temperature-based sampling basline, standard LLM strategizing, and our SCOOP-optimized strategizing.--> **Standard LLM strategizing does even worse than the unstrategized temperature-based baseline, while meta-optimizing the strategizing principles for performance maximization leads to significant gains.** On AIME and HMMT tasks, we find that Standard LLM Strategizing could lead to regressions compared to the baseline. Our approach, SCOOP (**S**trategy **Co**ordination **Op**timization), instead meta-optimizes the strategizing principles on a small training set of questions, resulting in strategies that actually lead to performance gains.*
 

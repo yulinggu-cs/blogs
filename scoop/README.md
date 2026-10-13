@@ -18,7 +18,7 @@ permalink: /scoop/
 
 <p align="center"><img width="85%" src="scoop_fig1.png" /></p>
 
-*Figure: **Overview of SCOOP (**S**trategy **Co**ordination **Op**timization).** LLMs may not be natural explorers out of the box, but with SCOOP, they can learn to explore—navigating complex output spaces across the frontier of challenging tasks. SCOOP unlocks effective exploration via a simple inference-time loop: (1) an **LM Strategist** proposes K diverse strategies for a task; (2) an **LM Solver** executes the K generations in parallel; and (3) an **LM Optimizer** meta-optimizes the strategized exploration prompts based on execution feedback to systematically refine how the exploration is done. Over successive iterations, SCOOP discovers generalizable principles for strategized exploration that drive performance gains over both unstrategized sampling and standard LLM strategizing.*
+*Figure: **Overview of SCOOP (Strategy Coordination Optimization).** LLMs may not be natural explorers out of the box, but with SCOOP, they can learn to explore—navigating complex output spaces across the frontier of challenging tasks. SCOOP unlocks effective exploration via a simple inference-time loop: (1) an **LM Strategist** proposes K diverse strategies for a task; (2) an **LM Solver** executes the K generations in parallel; and (3) an **LM Optimizer** meta-optimizes the strategized exploration prompts based on execution feedback to systematically refine how the exploration is done. Over successive iterations, SCOOP discovers generalizable principles for strategized exploration that drive performance gains over both unstrategized sampling and standard LLM strategizing.*
 
 
 ## Overview

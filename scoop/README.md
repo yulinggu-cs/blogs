@@ -140,7 +140,7 @@ After the iterations are completed, we evaluate Pass@16 on the held-out validati
 
 <p align="center"><img width="90%" src="val_pass_at_k_side_by_side.png" /></p>
 
-*Figure: Validation Pass@16 across 7 meta-prompt optimization iterations on AIME (left) and HMMT (right), comparing the evolving strategist (green) to the unstrategized temperature-based sampling baseline (red). The selected champion checkpoint on each benchmark is marked with a gold star (Iteration 4 on AIME at 87.5%, and Iteration 6 on HMMT at 67.5%). On both benchmarks, naive initial strategizing (iteration 0) underperforms the baseline, but iterative meta-optimization consistently elevates validation performance, reaching 87.5% on AIME (+15.0% over baseline) and 67.5% on HMMT (+10.0% over baseline).*
+*Figure: Validation Pass@16 across 7 meta-prompt optimization iterations on AIME (left) and HMMT (right), comparing the evolving strategist (green) to the unstrategized temperature-based sampling baseline (red). The selected champion checkpoint on each benchmark is marked with a gold star (Iteration 4 on AIME at 87.5%, and Iteration 6 on HMMT at 67.5%). On both benchmarks, naive initial strategizing (Iteration 0) underperforms the baseline, but iterative meta-optimization consistently elevates validation performance, reaching 87.5% on AIME (+15.0% over baseline) and 67.5% on HMMT (+10.0% over baseline).*
 
 
 ### Analysis of learned strategic exploration principles
